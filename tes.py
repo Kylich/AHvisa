@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-.
 from PIL import Image
 import pytesseract
-#import sys
-
-#sys.path.append('C:\Program Files\Tesseract-OCR')
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 for photo in range(1,6):
