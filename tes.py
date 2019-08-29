@@ -1,17 +1,12 @@
 # -*- coding: utf-8 -*-.
- 
 from PIL import Image
 import pytesseract
-import sys
+#import sys
 
-sys.path.append('C:\Program Files\Tesseract-OCR')
+#sys.path.append('C:\Program Files\Tesseract-OCR')
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 for photo in range(1,6):
-    #imageUP = Image.open('scan test\\00%sup.jpg' % photo)
-    #textUP = pytesseract.image_to_string(imageUP, lang="eng+rus")
-    #print(textUP)
-    
     imageMCT = Image.open('scan test\\00%smct.jpg' % photo)
     textMCT = pytesseract.image_to_string(imageMCT, lang="eng")
     textMCT = textMCT.replace(' ', '')
