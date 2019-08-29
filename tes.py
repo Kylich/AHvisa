@@ -13,24 +13,43 @@ MCT = 'P<RUSAS TANIN<<SERGEY <<<<<<<<<<< <<< KKK KKK KKK\n7152939691RUS6405216M2
 MCT = MCT.replace(' ', '')
 MCTs = MCT.split("\n")
 
-def serialKSch(serialKS, serial):
-    serialKSves = [7, 3, 1] * 3
-    serialKSmap = []
-    for i in range(0,9):
-        serialKSmap.append(int(list(serial)[i])*serialKSves[i])
-    serialKScheck = sum(serialKSmap) % 10
-    if serialKScheck != serialKS:
-        print('wrong serialKS')
+MCT1 = MCTs[0]
+MCT2 = MCTs[1]
+
+def KSch(KS, KS_):
+    KSves = ([7, 3, 1] * 3)
+    KSmap = []
+    for i in range(0,len(KS_)):
+        KSmap.append(int(list(KS_)[i])*KSves[i])
+    KSch = sum(KSmap) % 10
+    if KSch != int(KS):
+        print('wrong KS ' + KS)
         input()
 
-FNm = MCTs[0].find('<<')
-FNe = MCTs[0].find('<<', FNm+2)
+FNm = MCT1.find('<<')
+FNe = MCT1.find('<<', FNm+2)
 
-contry = MCTs[0][2:5]
-family = MCTs[0][5:FNm]
-name = MCTs[0][FNm+2:FNe]
+country = MCT1[2:5]
+family = MCT1[5:FNm]
+name = MCT1[FNm+2:FNe]
 
+serial = MCT2[0:9]
+KSch(MCT2[9], serial)
 
-serial = MCTs[1][0:9]
+countryCh = MCT2[10:13]
+if countryCh != country:
+    print('wrong country')
+    input()
 
-serialKSch(int(MCTs[1][9], serial)
+KSch(MCT2[19], MCT2[13:19])
+
+Byear = MCT2[13:15]
+Bmonth = MCT2[15:17]
+Bday = MCT2[17:19]
+
+sex = MCT2[20]
+
+passdate = MCT2[21:27]
+KSch(MCT2[27], passdate)
+
+#return country, family, name, serial, Byear, Bmonth, Bday, sex, passdate
