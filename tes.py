@@ -1,51 +1,31 @@
 # -*- coding: utf-8 -*-.
-from PIL import Image
-import pytesseract
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-f = open('mct.txt', 'r', encoding='utf-8')
+def ocr(ph):
+    from PIL import Image
+    import pytesseract
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+    #f = open('mct.txt', 'r', encoding='utf-8')
 
-# photo=[
-# """P<RUSCHUKINA<X<ELENA<<<<<<<<<<<<<<6£666KKKKKK
-# 7224947463RUS8407177F2212245<<<<<<<<<<<<<<06""",
+    passAll = []
 
-# """P<RUSURAEV<<ANDREY<<<<<<<<<<<<<esdsssssee<<<
-# 7234631288RUS6407276M2303093<<<<<<<<<<<<<<02""",
-
-# """P<RUSASTANIN<<SERGEY<<<<<<<<<<<<<<KKKKKKKKK
-# 7152939691RUS6405216M2107110<<<<<<<<<<<<<<08""",
-
-# """P<RUSDUBOVITSKAYA<<NATALIA<<<<<<<KKKKEKE
-# 5156003039RUS7312151F1710102<<<<cccceces<x<d""",
-
-# """P<RUSGRAN<<SERGEI<<<<<<<<<<<K<<Ke<<esss<<<<<<
-# 7179677969RUS8607151M2203023<<<<<<<<<<<<<<00"""]
-passAll = []
-
-def KSch(KS, KS_):
-    KSves = ([7, 3, 1] * 3)
-    KSmap = []
-    for i in range(0,len(KS_)):
-        try:
-            KSmap.append(int(list(KS_)[i])*KSves[i])
-        except:
-            print('%s: wrong KS numbers %s' % (ph, list(KS_)[i]))
+    def KSch(KS, KS_):
+        KSves = ([7, 3, 1] * 3)
+        KSmap = []
+        for i in range(0,len(KS_)):
+            try:
+                KSmap.append(int(list(KS_)[i])*KSves[i])
+            except:
+                print('%s: wrong KS numbers %s' % (ph, list(KS_)[i]))
+                return False
+        KSch = sum(KSmap) % 10
+        if KSch != int(KS):
+            print('%s: wrong KS = %s' % ph, KS)
             return False
-    KSch = sum(KSmap) % 10
-    if KSch != int(KS):
-        print('%s: wrong KS = %s' % ph, KS)
-        return False
-    return True
-    
-cnfgF=False
+        return True
+        
+    config_='--psm 3 --oem 1'
 
-config_='--psm 3 --oem 1'
-cnfgCheck=0
-for ph in range(1,10):
-    if cnfgF:
-        cnfgF = False
-        break
     while True:
-        imageMCT = Image.open('scan test\\00%sfull_grey.jpg' % ph)
+        imageMCT = Image.open('scan test\\%s' % ph)
         textMCT = pytesseract.image_to_string(imageMCT,
                                                 lang="eng",
                                                 config=config_)
@@ -117,8 +97,8 @@ for ph in range(1,10):
         
         passAll.append(passData)
         print('%s: good (%s)' % (ph, config_))
-        cnfgCheck+=1
+
         break
-print('cnfgCheck: %s' % cnfgCheck)
+
 
 # f.close
