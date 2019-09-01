@@ -25,17 +25,31 @@ def KSch(KS, KS_):
     KSves = ([7, 3, 1] * 3)
     KSmap = []
     for i in range(0,len(KS_)):
-        KSmap.append(int(list(KS_)[i])*KSves[i])
+        try:
+            KSmap.append(int(list(KS_)[i])*KSves[i])
+        except:
+            print('%s: wrong KS numbers %s' % (ph, list(KS_)[i]))
+            return False
     KSch = sum(KSmap) % 10
     if KSch != int(KS):
         print('%s: wrong KS = %s' % ph, KS)
         return False
     return True
+    
+cnfgF=False
 
-for ph in range(1,6):
+config_='--psm 3 --oem 1'
+cnfgCheck=0
+for ph in range(1,10):
+    if cnfgF:
+        cnfgF = False
+        break
     while True:
-        imageMCT = Image.open('scan test\\00%sfull.jpg' % ph)
-        textMCT = pytesseract.image_to_string(imageMCT, lang="eng")
+        imageMCT = Image.open('scan test\\00%sfull_grey.jpg' % ph)
+        textMCT = pytesseract.image_to_string(imageMCT,
+                                                lang="eng",
+                                                config=config_)
+        #print(textMCT)  
         textMCT = textMCT.replace(' ', '')
         passData = {}
         MCTs = textMCT.split("\n")
@@ -45,7 +59,8 @@ for ph in range(1,6):
                 MCTwith.append(s)
         
         if len(MCTwith)<2:
-            print('%s: wrong len:\n\n\n%s' % (ph, textMCT))
+            print('%s: wrong len (%s)' % (ph, config_))
+
             break      
 
         MCT1 = MCTwith[0]
@@ -57,7 +72,7 @@ for ph in range(1,6):
             if MCT1[FNm+1] != '<':
                 MCT1 = MCT1[:FNm+1] + MCT1[FNm+2:]
                 if z>1:
-                    print('%s: wrong FN' % ph)
+                    print('%s: wrong FN (%s)' % (ph, config_))
                     break
                 z+=1
             else: break
@@ -101,7 +116,9 @@ for ph in range(1,6):
         passData ['Pday'] = Pday
         
         passAll.append(passData)
-        print('%s: good' % ph)
+        print('%s: good (%s)' % (ph, config_))
+        cnfgCheck+=1
         break
+print('cnfgCheck: %s' % cnfgCheck)
 
 # f.close
