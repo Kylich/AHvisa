@@ -33,7 +33,7 @@ def ocr(ph):
         return FNm, FNe
 
     while True:
-        imageMCT = Image.open('scan test\\%s' % ph)
+        imageMCT = Image.open('scan\\%s' % ph)
         config_='--psm 3 --oem 1'
         textMCT = pytesseract.image_to_string(
             imageMCT,

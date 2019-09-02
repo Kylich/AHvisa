@@ -12,24 +12,17 @@ from selenium.webdriver.support.ui import Select
 
 driver = webdriver.Firefox()
 
-# Test name: login
-# Step # | name | target | value | comment
-# 1 | open | https://www.vfsvisaservicesrussia.com/onlinevaf-finland?Country=NhRR5Ee0CQYQchCJG6L+TmyspNLVu6Jjk/QOcheOSo9pDuGGZHwtmEl7tuos+PHK&Culture=ru-RU |  | 
-driver.get("https://www.vfsvisaservicesrussia.com/onlinevaf-finland?Country=NhRR5Ee0CQYQchCJG6L+TmyspNLVu6Jjk/QOcheOSo9pDuGGZHwtmEl7tuos+PHK&Culture=ru-RU")
-# 2 | type | id=EmailId | kylikov_nikita@mail.ru | 
-driver.find_element(By.ID, "EmailId").send_keys("kylikov_nikita@mail.ru")
-# 3 | type | id=Password | V515eeC938com! | 
-driver.find_element(By.ID, "Password").send_keys("V515eeC938com!")
-# 4 | click | id=CaptchaInputText |  | 
-driver.find_element(By.ID, "CaptchaInputText").click()
+# driver.get("https://www.vfsvisaservicesrussia.com/onlinevaf-finland?Country=NhRR5Ee0CQYQchCJG6L+TmyspNLVu6Jjk/QOcheOSo9pDuGGZHwtmEl7tuos+PHK&Culture=ru-RU")
 
-input()
+try:
+    driver.get("https://www.vfsvisaservicesrussia.com/OnlineVAF-Finland/Applicant/Page1")
+except:
+    driver.find_element(By.ID, "EmailId").send_keys("kylikov_nikita@mail.ru")
+    driver.find_element(By.ID, "Password").send_keys("V515eeC938com!")
+    driver.find_element(By.ID, "CaptchaInputText").click()
+    input()
+    driver.find_element(By.ID, "Login").click()
 
-# 5 | click | id=Login |  | 
-driver.find_element(By.ID, "Login").click()
-
-# Test name: kul
-# Step # | name | target | value | comment
 # 3 | select | id=VACLocation | label=CONSULATE GENERAL OF FINLAND, ST. PETERSBURG | 
 select = Select(driver.find_element_by_name('VACLocation'))
 select.select_by_visible_text("CONSULATE GENERAL OF FINLAND, ST. PETERSBURG")
@@ -157,12 +150,12 @@ driver.find_element(By.NAME, "SAVE").click()
 # actions = ActionChains(driver)
 # actions.move_to_element(element).perform()
 # 57 | click | id=rdbYes |  | 
-driver.find_element(By.ID, "rdbYes").click()
-# 58 | mouseOut | id=rdbYes |  | 
-# element = driver.find_element(By.CSS_SELECTOR, "body")
-# actions = ActionChains(driver)
-# actions.move_to_element(element, 0, 0).perform()
-# 59 | click | id=rdbTourist |  | 
-driver.find_element(By.ID, "rdbTourist").click()
-# 60 | click | id=btnSubmit |  | 
-driver.find_element(By.ID, "btnSubmit").click()
+# driver.find_element(By.ID, "rdbYes").click()
+# # 58 | mouseOut | id=rdbYes |  | 
+# # element = driver.find_element(By.CSS_SELECTOR, "body")
+# # actions = ActionChains(driver)
+# # actions.move_to_element(element, 0, 0).perform()
+# # 59 | click | id=rdbTourist |  | 
+# driver.find_element(By.ID, "rdbTourist").click()
+# # 60 | click | id=btnSubmit |  | 
+# driver.find_element(By.ID, "btnSubmit").click()
