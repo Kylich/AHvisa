@@ -1,5 +1,8 @@
-import os, time
+import os
+import time
+
 import tes
+
 path_to_watch = os.getcwd() + "\\scan"
 before = dict ([(f, None) for f in os.listdir (path_to_watch)])
 while 1:
