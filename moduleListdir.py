@@ -1,7 +1,7 @@
 import os
 import time
 
-import tes
+import moduleTesseact
 
 path_to_watch = os.getcwd() + "\\scan"
 before = dict ([(f, None) for f in os.listdir (path_to_watch)])
@@ -13,9 +13,9 @@ while 1:
     if added:
         print ("Added: ", ", ".join (added))
         if len(added)==1:
-            tes.ocr(added[0])
+            moduleTesseact.ocr(added[0])
         else:
             for ad in added:
-                tes.ocr(ad)
+                moduleTesseact.ocr(ad)
     if removed: print ("Removed: ", ", ".join (removed))
     before = after

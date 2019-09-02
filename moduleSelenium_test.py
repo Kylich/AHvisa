@@ -146,16 +146,8 @@ class TestKul():
     self.driver.find_element(By.ID, "next").click()
     # 55 | click | name=SAVE |  | 
     self.driver.find_element(By.NAME, "SAVE").click()
-    # 56 | mouseOver | id=rdbYes |  | 
-    element = self.driver.find_element(By.ID, "rdbYes")
-    actions = ActionChains(driver)
-    actions.move_to_element(element).perform()
     # 57 | click | id=rdbYes |  | 
     self.driver.find_element(By.ID, "rdbYes").click()
-    # 58 | mouseOut | id=rdbYes |  | 
-    element = self.driver.find_element(By.CSS_SELECTOR, "body")
-    actions = ActionChains(driver)
-    actions.move_to_element(element, 0, 0).perform()
     # 59 | click | id=rdbTourist |  | 
     self.driver.find_element(By.ID, "rdbTourist").click()
     # 60 | click | id=btnSubmit |  | 
