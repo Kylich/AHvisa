@@ -1,12 +1,18 @@
-import PyPDF2
+from PyPDF2 import PdfFileReader, PdfFileWriter
 
-filename = 'E:\\nikita\\GitHub\\AHvisa\\NIKITA KULIKOV.pdf'
-password = '717505021988'
+def decrypt_pdf(input_path, output_path, password):
+  with open(input_path, 'rb') as input_file, \
+    open(output_path, 'wb') as output_file:
+    reader = PdfFileReader(input_file)
+    reader.decrypt(password)
 
-pdfFile = open(filename, 'rb')
-pdfObject = PyPDF2.PdfFileReader(pdfFile)
+    writer = PdfFileWriter()
 
-if pdfObject.decrypt(password) == 1:
-    print("Yup, that's it!")
-else:
-    print('Nope!')
+    for i in range(reader.getNumPages()):
+      writer.addPage(reader.getPage(i))
+
+    writer.write(output_file)
+
+if __name__ == '__main__':
+  # example usage:
+  decrypt_pdf('NIKITA KULIKOV.pdf', 'NIKITA KULIKOV decr.pdf', '717505021988')
