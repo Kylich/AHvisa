@@ -1,6 +1,6 @@
 import PyPDF2
 
-filename = 'C:\\git\\AHvisa\\NIKITA KULIKOV.pdf'
+filename = 'E:\\nikita\\GitHub\\AHvisa\\NIKITA KULIKOV.pdf'
 password = '717505021988'
 
 pdfFile = open(filename, 'rb')
