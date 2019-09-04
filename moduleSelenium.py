@@ -16,6 +16,7 @@ driver = webdriver.Firefox()
 
 try:
     driver.get("https://www.vfsvisaservicesrussia.com/OnlineVAF-Finland/Applicant/Page1")
+    select = Select(driver.find_element_by_name('VACLocation'))
 except:
     driver.find_element(By.ID, "EmailId").send_keys("kylikov_nikita@mail.ru")
     driver.find_element(By.ID, "Password").send_keys("V515eeC938com!")
