@@ -16,7 +16,7 @@ path_to_watch_P = '.\\pdf\\' + datetime.datetime.today().strftime("%Y-%m-%d") + 
 before_P = dict ([(f, None) for f in os.listdir (path_to_watch_P)])
 
 while 1:
-    time.sleep (10)
+    time.sleep (5)
     after_S = dict ([(f, None) for f in os.listdir (path_to_watch_S)])
     added_S = [f for f in after_S if not f in before_S]
     removed_S = [f for f in before_S if not f in after_S]
