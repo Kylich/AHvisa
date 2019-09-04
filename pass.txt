@@ -1,1 +1,3 @@
 717505021988
+
+"C:\Program Files (x86)\4dots Software\Free PDF Password Remover\PDFPasswordRemover.exe" /userpassword:"717505021988" "D:\git\AHvisa\NIKITAKULIKOV.pdf"

@@ -1,18 +1,17 @@
-from PyPDF2 import PdfFileReader, PdfFileWriter
+import os
+from PyPDF2 import PdfFileReader
 
-def decrypt_pdf(input_path, output_path, password):
-  with open(input_path, 'rb') as input_file, \
-    open(output_path, 'wb') as output_file:
-    reader = PdfFileReader(input_file)
-    reader.decrypt(password)
+# os.chdir(r"C:\\Program Files (x86)\\4dots Software\\Free PDF Password Remover\\")
+# os.system('PDFPasswordRemover.exe /userpassword:"717505021988" "D:\\git\\AHvisa\\NIKITA KULIKOV.pdf"')
 
-    writer = PdfFileWriter()
-
-    for i in range(reader.getNumPages()):
-      writer.addPage(reader.getPage(i))
-
-    writer.write(output_file)
-
-if __name__ == '__main__':
-  # example usage:
-  decrypt_pdf('NIKITA KULIKOV.pdf', 'NIKITA KULIKOV decr.pdf', '717505021988')
+os.chdir(r"D:\\git\\AHvisa\\")
+pdf_document = "NIKITA KULIKOV_unprotected.pdf"  
+with open(pdf_document, "rb") as filehandle:  
+  pdf = PdfFileReader(filehandle)
+  info = pdf.getDocumentInfo()
+  # print (info)
+  pages = pdf.getNumPages()
+  # print ("number of pages: %i" % pages)
+  page1 = pdf.getPage(0)
+  # print(page1)
+  print(page1.extractText())
