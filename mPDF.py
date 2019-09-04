@@ -6,19 +6,20 @@ def decript(path, psw, name):
     import time, datetime
 
     PDFFile = os.getcwd() + path[1:] + name[:-4] + '_unprotected.pdf'
-    
-    os.chdir(r"C:\\Program Files (x86)\\4dots Software\\Free PDF Password Remover\\")
-
+    chdirPR = 'C:\\Program Files (x86)\\4dots Software\\Free PDF Password Remover\\'
+    chdirAHvisa = os.getcwd() 
+    os.chdir(chdirPR)
     os.system('PDFPasswordRemover.exe /userpassword:"' + psw + '" "' + path + name + '"')
+    os.chdir(chdirAHvisa)
 
     # print('PDFPasswordRemover.exe /userpassword:"717505021988" "' + path + name + '"')
     time.sleep (5)
 
-    GHOSTSCRIPT_PATH = "C:\\Program Files\\gs\\gs9.27\\bin\\gswin64.exe"
-    # GSPRINT_PATH = "C:\\Program Files\\gs\\gsprint\\gsprint.exe"
+    # GHOSTSCRIPT_PATH = "C:\\Program Files\\gs\\gs9.27\\bin\\gswin64.exe"
+    # # GSPRINT_PATH = "C:\\Program Files\\gs\\gsprint\\gsprint.exe"
 
-    currentprinter = win32print.GetDefaultPrinter()
+    # currentprinter = win32print.GetDefaultPrinter()
 
-
-    win32api.ShellExecute(0, 'open', GHOSTSCRIPT_PATH, '-ghostscript "'+GHOSTSCRIPT_PATH+'" -printer "'+currentprinter+'" "' + PDFFile + '"', '.', 0)
+    print(PDFFile)
+    # win32api.ShellExecute(0, 'open', GHOSTSCRIPT_PATH, '-ghostscript "'+GHOSTSCRIPT_PATH+'" -printer "'+currentprinter+'" "' + PDFFile + '"', '.', 0)
     # win32api.ShellExecute(0, 'open', GSPRINT_PATH, '-ghostscript "'+GHOSTSCRIPT_PATH+'" -printer "'+currentprinter+'" "' + PDFFile + '"', '.', 0)

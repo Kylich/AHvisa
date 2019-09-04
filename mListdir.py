@@ -6,6 +6,10 @@ import mTesseact
 import mPDF
 
 
+pathPDF = './pdf/' + datetime.datetime.today().strftime("%Y-%m-%d") + '/'
+if not os.path.exists(pathPDF):
+    os.makedirs(pathPDF)
+
 path_to_watch_S = os.getcwd() + "\\scan"
 before_S = dict ([(f, None) for f in os.listdir (path_to_watch_S)])
 path_to_watch_P = '.\\pdf\\' + datetime.datetime.today().strftime("%Y-%m-%d") + '\\'
