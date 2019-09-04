@@ -15,9 +15,10 @@ def decript(path, psw, name):
     time.sleep (5)
 
     GHOSTSCRIPT_PATH = "C:\\Program Files\\gs\\gs9.27\\bin\\gswin64.exe"
-    GSPRINT_PATH = "C:\\Program Files\\gs\\gsprint\\gsprint.exe"
+    # GSPRINT_PATH = "C:\\Program Files\\gs\\gsprint\\gsprint.exe"
 
     currentprinter = win32print.GetDefaultPrinter()
 
 
-    win32api.ShellExecute(0, 'open', GSPRINT_PATH, '-ghostscript "'+GHOSTSCRIPT_PATH+'" -printer "'+currentprinter+'" "' + PDFFile + '"', '.', 0)
+    win32api.ShellExecute(0, 'open', GHOSTSCRIPT_PATH, '-ghostscript "'+GHOSTSCRIPT_PATH+'" -printer "'+currentprinter+'" "' + PDFFile + '"', '.', 0)
+    # win32api.ShellExecute(0, 'open', GSPRINT_PATH, '-ghostscript "'+GHOSTSCRIPT_PATH+'" -printer "'+currentprinter+'" "' + PDFFile + '"', '.', 0)
