@@ -19,10 +19,13 @@ status, select_data = imap.select()
 # sender = 'donotreply@vfshelpline.com'
 sender = 'kylikov_nikita@mail.ru'
 
-# от кого письмо
-status, search_data = imap.search(None, 'FROM', sender)
+# Use search(), not status()
+status, response = imap.search(None, 'INBOX', '(UNSEEN)')
+unread_msg_nums = response[0].split()
+# status, response = imap.search(None, '(UNSEEN)', '(FROM "%s")' % (sender_of_interest))
+print (len(unread_msg_nums))
 
-for msg_id in reversed(search_data[0].split()):
+for msg_id in reversed(unread_msg_nums):
     status, msg_data = imap.fetch(msg_id, '(RFC822)')
 # включает в себя заголовки и альтернативные полезные нагрузки
     mail = email.message_from_bytes(msg_data[0][1])
@@ -62,6 +65,8 @@ for msg_id in reversed(search_data[0].split()):
 
                 else: print('Файл уже закачан: ', filename)
         break
+for e_id in unread_msg_nums:
+    imap.store(e_id, '+FLAGS', r'\Seen')
 imap.expunge()
 imap.logout()
 
