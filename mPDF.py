@@ -2,11 +2,20 @@ import os
 import time
 import win32api
 import win32print
+import sqlite3
 
-def decript(path, psw, name):
+
+
+
+def decript(path, name):
     PDFfile_de = path + name[:-4] + '_unprotected.pdf'
     PDFfile = path + name
     
+    conn = sqlite3.connect('SQLvisa.db')
+    cursor = conn.cursor()
+    ###
+    conn.close()
+
     chdirPR = 'C:\\PPR\\'
     chdirAHvisa = os.getcwd() 
     os.chdir(chdirPR)

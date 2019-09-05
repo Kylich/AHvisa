@@ -5,8 +5,6 @@ import datetime
 import mEmail
 import mListdir
 
-password_P = '717505021988'
-
 today = datetime.datetime.today().strftime("%Y-%m-%d")
 pathToday = os.getcwd() + '\\temp\\%s\\' % today
 path_to_watch_P = os.getcwd() + '\\temp\\%s\\pdf\\' % today
@@ -22,7 +20,7 @@ if not os.path.exists(pathToday):
 while True:
     time.sleep (5)
 
-    mEmail.unseen(path_to_watch_P, password_P)
+    mEmail.unseen(path_to_watch_P)
 
     mListdir.l()
 

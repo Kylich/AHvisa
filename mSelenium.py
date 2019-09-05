@@ -9,6 +9,12 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+import sqlite3
+
+conn = sqlite3.connect('SQLvisa.db')
+cursor = conn.cursor()
+###
+conn.close()
 
 driver = webdriver.Firefox()
 

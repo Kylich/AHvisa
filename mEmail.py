@@ -14,7 +14,7 @@ YA_PORT = 993
 imap = imaplib.IMAP4_SSL(YA_HOST)
 imap.login(YA_USER, YA_PASSWORD)
 
-def unseen(path, password_P):
+def unseen(path):
     status, select_data = imap.select()
     # sender = 'donotreply@vfshelpline.com'
     # sender = 'kylikov_nikita@mail.ru'
@@ -45,6 +45,6 @@ def unseen(path, password_P):
                             with open(path+filename, 'wb') as new_file:
                                 new_file.write(part.get_payload(decode=True))
                             print('Закачали файл: ', filename)
-                        mPdf.decript(path, password_P, filename)    
+                        mPdf.decript(path, filename)    
                     else: print('Файл уже закачан: ', filename)
             break
