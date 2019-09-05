@@ -2,8 +2,8 @@ import os
 import time
 import datetime
 
-import mListdir
 import mEmail
+import mListdir
 
 password_P = '717505021988'
 
@@ -19,7 +19,6 @@ if not os.path.exists(pathToday):
 
 before_S = dict ([(f, None) for f in os.listdir (path_to_watch_S)])
 # before_P = dict ([(f, None) for f in os.listdir (path_to_watch_P)])
-
 
 while True:
     time.sleep (5)
