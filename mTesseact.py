@@ -1,5 +1,6 @@
 from PIL import Image
 import pytesseract
+import mSQL
 def ocr(ph):
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
@@ -43,7 +44,7 @@ def ocr(ph):
 
         textMCT = textMCT.replace(' ', '')
         MCTs = textMCT.split("\n")
-        passData = {}
+        passData = []
         MCTwith = []
         for s in MCTs:
             if '<' in s:
@@ -63,21 +64,21 @@ def ocr(ph):
         if not KSch(MCT2[19], MCT2[13:19]): break
         if not KSch(MCT2[27], MCT2[21:27]): break
 
-        passData ['surname'] = MCT1[5:FNm]
-        passData ['name'] = MCT1[FNm+2:FNe]
-        passData ['sex'] = MCT2[20]
-        passData ['country'] = MCT1[2:5]
+        passData.append(MCT1[5:FNm])
+        passData.append(MCT1[FNm+2:FNe])
+        passData.append(MCT2[20])
+        passData.append(MCT1[2:5])
         
-        passData ['Bcountry'] = MCT2[10:13]
-        passData ['Byear'] = MCT2[13:15]
-        passData ['Bmonth'] = MCT2[15:17]
-        passData ['Bday'] = MCT2[17:19]
+        passData.append(MCT2[10:13])
+        passData.append(MCT2[13:15])
+        passData.append(MCT2[15:17])
+        passData.append(MCT2[17:19])
         
-        passData ['serial'] = MCT2[0:9]
-        passData ['Pyear'] = MCT2[21:23]
-        passData ['Pmonth'] = MCT2[23:25]
-        passData ['Pday'] = MCT2[25:27]
+        passData.append(MCT2[0:9])
+        passData.append(MCT2[21:23])
+        passData.append(MCT2[23:25])
+        passData.append(MCT2[25:27])
 
         print('%s: good' % ph)
-        return passData
+        mSQL.newClient(passData)
     
