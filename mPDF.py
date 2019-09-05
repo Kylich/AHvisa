@@ -7,13 +7,14 @@ import sqlite3
 def decript(path, filename):
     PDFfile_de = path + filename[:-4] + '_unprotected.pdf'
     PDFfile = path + filename
-    filename = filename[:-4]
-    fullName = ['','']
-
-    name, surname = fullName
+    name, surname = filename[:-4].split(' ')
 
     conn = sqlite3.connect('SQLvisa.db')
     cursor = conn.cursor()
+    sql = "SELECT * FROM clients WHERE surname=? AND name=?"
+    cursor.execute(sql, [(surname), (name)])
+    print(cursor.fetchall()) # or use fetchone()
+    
     psw = ''
     conn.close()
 
@@ -43,8 +44,8 @@ def decript(path, filename):
         print('win32print error')
     return
 
-# import datetime
-# import os
-# today = datetime.datetime.today().strftime("%Y-%m-%d")
-# path = os.getcwd() + '\\temp\\%s\\pdf\\' % today
-# decript(path, '717505021988', 'NIKITA KULIKOV.pdf')
+import datetime
+import os
+today = datetime.datetime.today().strftime("%Y-%m-%d")
+path = os.getcwd() + '\\temp\\%s\\pdf\\' % today
+decript(path, 'NIKITA KULIKOV.pdf')
