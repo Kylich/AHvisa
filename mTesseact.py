@@ -1,6 +1,6 @@
+from PIL import Image
+import pytesseract
 def ocr(ph):
-    from PIL import Image
-    import pytesseract
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
     def KSch(KS, KS_):
@@ -63,11 +63,11 @@ def ocr(ph):
         if not KSch(MCT2[19], MCT2[13:19]): break
         if not KSch(MCT2[27], MCT2[21:27]): break
 
-        passData ['country'] = MCT1[2:5]
         passData ['surname'] = MCT1[5:FNm]
         passData ['name'] = MCT1[FNm+2:FNe]
         passData ['sex'] = MCT2[20]
-
+        passData ['country'] = MCT1[2:5]
+        
         passData ['Bcountry'] = MCT2[10:13]
         passData ['Byear'] = MCT2[13:15]
         passData ['Bmonth'] = MCT2[15:17]
