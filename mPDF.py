@@ -7,13 +7,17 @@ import sqlite3
 
 
 
-def decript(path, name):
-    PDFfile_de = path + name[:-4] + '_unprotected.pdf'
-    PDFfile = path + name
-    
+def decript(path, filename):
+    PDFfile_de = path + filename[:-4] + '_unprotected.pdf'
+    PDFfile = path + filename
+    filename = filename[:-4]
+    fullName = ['','']
+
+    name, surname = fullName
+
     conn = sqlite3.connect('SQLvisa.db')
     cursor = conn.cursor()
-    ###
+    psw = ''
     conn.close()
 
     chdirPR = 'C:\\PPR\\'
