@@ -14,13 +14,16 @@ def newClient(client):
     #                    Bmonth text, Bday text, Pserial text, 
     #                    Pyear text, Pmonth text, Pday text)""")
 
-    cursor.execute("""INSERT INTO albums
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""",
-                    client)
-    
-    # Сохраняем изменения
-    conn.commit()
 
-    # Не забываем закрыть соединение с базой данных
-    conn.close()
-    print('new client added to db')
+    try:
+        cursor.execute("""INSERT INTO clients
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""",
+                        client)
+        conn.commit()
+        print('new client added to db')
+    except sqlite3.Error as e:
+        print("Database error: %s" % e)
+    except Exception as e:
+        print("Exception in _query: %s" % e)
+    finally:
+        conn.close()    

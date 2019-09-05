@@ -17,7 +17,6 @@ if not os.path.exists(pathToday):
     os.makedirs(path_to_watch_P)
     os.makedirs(path_to_watch_S)
 
-before_S = dict ([(f, None) for f in os.listdir (path_to_watch_S)])
 # before_P = dict ([(f, None) for f in os.listdir (path_to_watch_P)])
 
 while True:
@@ -25,7 +24,7 @@ while True:
 
     mEmail.unseen(path_to_watch_P, password_P)
 
-    mListdir.l(before_S, path_to_watch_S)
+    mListdir.l()
 
     # after_P = dict ([(f, None) for f in os.listdir (path_to_watch_P)])
     # added_P = [f for f in after_P if not f in before_P]

@@ -1,7 +1,7 @@
 from PIL import Image
 import pytesseract
 import mSQL
-def ocr(ph):
+def ocr(ph, path_to_watch):
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
     def KSch(KS, KS_):
@@ -34,7 +34,8 @@ def ocr(ph):
         return FNm, FNe
 
     while True:
-        imageMCT = Image.open('scan\\%s' % ph)
+        imageName = path_to_watch + ph
+        imageMCT = Image.open(imageName)
         config_='--psm 3 --oem 1'
         textMCT = pytesseract.image_to_string(
             imageMCT,
@@ -81,4 +82,5 @@ def ocr(ph):
 
         print('%s: good' % ph)
         mSQL.newClient(passData)
+        break
     
