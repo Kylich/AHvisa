@@ -4,9 +4,6 @@ import win32api
 import win32print
 import sqlite3
 
-
-
-
 def decript(path, filename):
     PDFfile_de = path + filename[:-4] + '_unprotected.pdf'
     PDFfile = path + filename
