@@ -14,30 +14,6 @@ from selenium.webdriver.common.keys import Keys
 driver = webdriver.Firefox()
 actions = ActionChains(driver) 
 
-# actions = ActionChains(driver)
-    # vars = {}
-  
-  # def teardown_method(self, method):
-  #   driver.quit()
-  
-  # def test_untitled(self):
-    # Test name: Untitled
-    # Step # | name | target | value | comment
-    # 1 | open | /onlinevaf-finland?Country=NhRR5Ee0CQYQchCJG6L+TmyspNLVu6Jjk/QOcheOSo9pDuGGZHwtmEl7tuos+PHK&Culture=ru-RU |  | 
-# driver.get("https://www.vfsvisaservicesrussia.com/onlinevaf-finland?Country=NhRR5Ee0CQYQchCJG6L+TmyspNLVu6Jjk/QOcheOSo9pDuGGZHwtmEl7tuos+PHK&Culture=ru-RU")
-# # 2 | setWindowSize | 923x836 |  | 
-# driver.set_window_size(923, 836)
-# # 3 | click | id=EmailId |  | 
-# driver.find_element(By.ID, "EmailId").click()
-# # 4 | type | id=EmailId | kylikov_nikita@mail.ru | 
-# driver.find_element(By.ID, "EmailId").send_keys("kylikov_nikita@mail.ru")
-# # 5 | type | id=Password | V515eeC938com! | 
-# driver.find_element(By.ID, "Password").send_keys("V515eeC938com!")
-# # 6 | type | id=CaptchaInputText | tvjsz | 
-# driver.find_element(By.ID, "CaptchaInputText").send_keys("tvjsz")
-# # 7 | click | id=Login |  | 
-# driver.find_element(By.ID, "Login").click()
-# # 8 | click | id=VACLocation |  | 
 driver.get(r"https://www.vfsvisaservicesrussia.com/onlinevaf-finland?Country=NhRR5Ee0CQYQchCJG6L+TmyspNLVu6Jjk/QOcheOSo9pDuGGZHwtmEl7tuos+PHK&Culture=ru-RU")
 
 # try:
