@@ -8,7 +8,7 @@ import mPdf
 
 YA_HOST = "imap.gmail.com"
 YA_USER = "opengamerroller"
-YA_PASSWORD = "Gorod4Narodov"
+YA_PASSWORD = ""
 YA_PORT = 993
 
 imap = imaplib.IMAP4_SSL(YA_HOST)
