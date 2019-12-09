@@ -1,7 +1,7 @@
 import os
 import time
-import win32api
-import win32print
+# import win32api
+# import win32print
 import sqlite3
 
 def decript(path, filename):
@@ -18,7 +18,7 @@ def decript(path, filename):
     psw = ''
     conn.close()
 
-    chdirPR = 'C:\\PPR\\'
+    chdirPR = 'C:\\Drive\\Prog distr\\PPR\\'
     chdirAHvisa = os.getcwd() 
     os.chdir(chdirPR)
     os.system('PDFPasswordRemover.exe /userpassword:"' + psw + '" "' + PDFfile + '"')
@@ -37,12 +37,12 @@ def decript(path, filename):
     # GSPRINT_PATH = "C:\\Program Files\\gs\\gs9.27\\bin\\gsprint.exe"
     # currentprinter = win32print.GetDefaultPrinter()
 
-    try:
-        # win32api.ShellExecute(0, 'open', GSPRINT_PATH, '-ghostscript "'+GHOSTSCRIPT_PATH+'" -printer "'+currentprinter+'" "' + PDFfile + '"', '.', 0)
-        print('win32print good')
-    except:
-        print('win32print error')
-    return
+    # try:
+    #     # win32api.ShellExecute(0, 'open', GSPRINT_PATH, '-ghostscript "'+GHOSTSCRIPT_PATH+'" -printer "'+currentprinter+'" "' + PDFfile + '"', '.', 0)
+    #     print('win32print good')
+    # except:
+    #     print('win32print error')
+    # return
 
 import datetime
 import os

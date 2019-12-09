@@ -22,7 +22,7 @@ while True:
 
     mEmail.unseen(path_to_watch_P)
 
-    mListdir.l()
+    # mListdir.l()
 
     # after_P = dict ([(f, None) for f in os.listdir (path_to_watch_P)])
     # added_P = [f for f in after_P if not f in before_P]
