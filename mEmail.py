@@ -4,11 +4,11 @@ import imaplib
 import base64
 import os
 
-import mPdf
-
+import mPDF
+# https://myaccount.google.com/u/1/lesssecureapps
 YA_HOST = "imap.gmail.com"
 YA_USER = "opengamerroller"
-YA_PASSWORD = ""
+YA_PASSWORD = "Gorod4Narodov"
 YA_PORT = 993
 
 imap = imaplib.IMAP4_SSL(YA_HOST)
@@ -39,12 +39,11 @@ def unseen(path):
 
                 # content_type = part.get_content_type()
                 if filename:
-                    if not os.path.exists(path+filename) or \
-                       not os.path.exists(path+filename[:-4] + '_unprotected.pdf'):
+                    if not os.path.exists(path+filename) and not os.path.exists(path+filename[:-4] + '_unprotected.pdf'):
                         if '.pdf' in filename:
                             with open(path+filename, 'wb') as new_file:
                                 new_file.write(part.get_payload(decode=True))
                             print('Закачали файл: ', filename)
-                        mPdf.decript(path, filename)    
+                        mPDF.decript(path, filename)    
                     else: print('Файл уже закачан: ', filename)
             break

@@ -8,20 +8,24 @@ def decript(path, filename):
     PDFfile_de = path + filename[:-4] + '_unprotected.pdf'
     PDFfile = path + filename
     name, surname = filename[:-4].split(' ')
-
+    print (name, surname)
     conn = sqlite3.connect('SQLvisa.db')
     cursor = conn.cursor()
     sql = "SELECT * FROM clients WHERE surname=? AND name=?"
     cursor.execute(sql, [(surname), (name)])
-    print(cursor.fetchall()) # or use fetchone()
-    
-    psw = ''
-    conn.close()
+    r = cursor.fetchone() # or use fetchone()
 
-    chdirPR = 'C:\\Drive\\Prog distr\\PPR\\'
+    psw = r[2][0:4]+r[3]+r[4]+r[5]
+    conn.close() # userpassword:"' + psw + '"    /outputfolder:"'+ path + 'un\\"
+
+
+    chdirPR = 'D:\\Drive\\Prog distr\\PPR\\'
     chdirAHvisa = os.getcwd() 
     os.chdir(chdirPR)
-    os.system('PDFPasswordRemover.exe /userpassword:"' + psw + '" "' + PDFfile + '"')
+
+    PPR = 'PDFPasswordRemover.exe /userpassword:"' + psw + '" "' + PDFfile + '"'
+    print(PPR)
+    os.system(PPR)
     os.chdir(chdirAHvisa)
 
     time.sleep (5)
@@ -44,8 +48,8 @@ def decript(path, filename):
     #     print('win32print error')
     # return
 
-import datetime
-import os
-today = datetime.datetime.today().strftime("%Y-%m-%d")
-path = os.getcwd() + '\\temp\\%s\\pdf\\' % today
-decript(path, 'NIKITA KULIKOV.pdf')
+# import datetime
+# import os
+# today = datetime.datetime.today().strftime("%Y-%m-%d")
+# path = os.getcwd() + '\\temp\\'  + today + '\\pdf\\'
+# decript(path, 'NIKITA KULIKOV.pdf')

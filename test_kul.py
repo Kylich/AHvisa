@@ -8,18 +8,11 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import Select
-# import sqlite3
-
-# conn = sqlite3.connect('SQLvisa.db')
-# cursor = conn.cursor()
-# ###
-# conn.close()
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 driver = webdriver.Firefox()
-
 driver.get(r"https://www.vfsvisaservicesrussia.com/onlinevaf-finland?Country=NhRR5Ee0CQYQchCJG6L+TmyspNLVu6Jjk/QOcheOSo9pDuGGZHwtmEl7tuos+PHK&Culture=ru-RU")
-
+driver.set_window_size(500, 1000)
 # try:
     # driver.get("https://www.vfsvisaservicesrussia.com/OnlineVAF-Finland/Applicant/Page1")
     # select = Select(driver.find_element_by_name('VACLocation'))
@@ -30,54 +23,29 @@ driver.find_element(By.ID, "CaptchaInputText").click()
 input()
 driver.find_element(By.ID, "Login").click()
 time.sleep(2)
-driver.set_window_size(500 , 500)
-# 3 | select | id=VACLocation | label=CONSULATE GENERAL OF FINLAND, ST. PETERSBURG | 
+
 dropdown = driver.find_element(By.ID, "VACLocation")
 dropdown.find_element(By.XPATH, "//option[. = 'CONSULATE GENERAL OF FINLAND, ST. PETERSBURG']").click()
- # 4 | type | id=LastName | KULIKOV | 
 driver.find_element(By.ID, "LastName").send_keys("KULIKOV")
-# 5 | type | id=LastNameAtBirth | KULIKOV | 
 driver.find_element(By.ID, "LastNameAtBirth").send_keys("KULIKOV")
-# 6 | type | id=FirstName | NIKITA | 
+driver.find_element(By.CSS_SELECTOR, "#CurrentNationality > option:nth-child(229)").click()
 driver.find_element(By.ID, "FirstName").send_keys("NIKITA")
-# 7 | type | id=Patronymic | SERGEEVICH | 
 driver.find_element(By.ID, "Patronymic").send_keys("SERGEEVICH")
-# 8 | type | id=DateOfBirth | 05/02/1988 | 
+driver.find_element(By.CSS_SELECTOR, "#NationalityAtBirth > option:nth-child(261)").click()
 driver.find_element(By.ID, "DateOfBirth").send_keys("05021988")
-# 9 | type | id=PlaceOfBirth | LENINGRAD | 
 driver.find_element(By.ID, "PlaceOfBirth").send_keys("LENINGRAD")
-# 10 | select | id=CountryOfBirth | label=RUSSIAN FEDERATION | 
-dropdown = driver.find_element(By.ID, "CountryOfBirth")
-dropdown.find_element(By.XPATH, "//option[. = 'RUSSIAN FEDERATION']").click()
-# 11 | select | id=CurrentNationality | label=RUSSIAN FEDERATION | 
-dropdown = driver.find_element(By.ID, "CurrentNationality")
-dropdown.find_element(By.XPATH, "//option[. = 'RUSSIAN FEDERATION']").click()
-# 12 | select | id=NationalityAtBirth | label=RUSSIAN FEDERATION | 
-dropdown = driver.find_element(By.ID, "NationalityAtBirth")
-dropdown.find_element(By.XPATH, "//option[. = 'RUSSIAN FEDERATION']").click()
-# 13 | select | id=Gender | label=MALE | 
+driver.find_element(By.CSS_SELECTOR, "#CountryOfBirth > option:nth-child(261)").click()
 dropdown = driver.find_element(By.ID, "Gender")
 dropdown.find_element(By.XPATH, "//option[. = 'MALE']").click()
-# 14 | select | id=MaritalStatus | label=SINGLE | 
 dropdown = driver.find_element(By.ID, "MaritalStatus")
 dropdown.find_element(By.XPATH, "//option[. = 'SINGLE']").click()
-# 15 | type | id=national | 714580417 | 
-driver.find_element(By.ID, "national").send_keys("714580417")
-# 16 | select | id=PassportTypeId | label=ALIEN'S PASSPORT | 
 dropdown = driver.find_element(By.ID, "PassportTypeId")
-dropdown.find_element(By.XPATH, "//option[. = 'ALIEN\'S PASSPORT']").click()
-# 17 | type | id=passport | 717580417 | 
+dropdown.find_element(By.XPATH, "//option[. = 'ORDINARY PASSPORT']").click()
 driver.find_element(By.ID, "passport").send_keys("717580417")
-# 18 | type | id=confirmpassport | 717580417 | 
 driver.find_element(By.ID, "confirmpassport").send_keys("717580417")
-# 19 | type | id=IssueDate | 03/02/2012 | 
 driver.find_element(By.ID, "IssueDate").send_keys("03022012")
-# 20 | type | id=ExpiryDate | 03/02/2022 | 
 driver.find_element(By.ID, "ExpiryDate").send_keys("03022022")
-# 21 | select | id=IssuedByCountry | label=RUSSIAN FEDERATION | 
-dropdown = driver.find_element(By.ID, "IssuedByCountry")
-dropdown.find_element(By.XPATH, "//option[. = 'RUSSIAN FEDERATION']").click()
-# 22 | type | id=PassportIssuedBy | FMS78036 | 
+driver.find_element(By.CSS_SELECTOR, "#IssuedByCountry > option:nth-child(229)").click()
 driver.find_element(By.ID, "PassportIssuedBy").send_keys("FMS78036")
 # 23 | click | id=next |  | 
 driver.find_element(By.ID, "next").click()
@@ -88,15 +56,16 @@ driver.find_element(By.ID, "PostalCode").send_keys("194100")
 # 26 | type | id=City | stpeterburg | 
 driver.find_element(By.ID, "City").send_keys("stpeterburg")
 # 27 | select | id=CountryId | label=RUSSIAN FEDERATION | 
-select = Select(driver.find_element_by_name('CountryId'))
-select.select_by_visible_text("RUSSIAN FEDERATION")
+driver.find_element(By.CSS_SELECTOR, "#CountryId > option:nth-child(184)").click()
+# dropdown = driver.find_element(By.ID, "CountryId")
+# dropdown.find_element(By.XPATH, "//option[. = 'RUSSIAN FEDERATION']").click()
 # 28 | type | id=ContactNumber | +79502203226 | 
-driver.find_element(By.ID, "ContactNumber").send_keys("+79502203226")
+driver.find_element(By.ID, "ContactNumber").send_keys("79502203226")
 # 29 | type | id=EmailId | kylikov_nikita@mail.ru | 
 driver.find_element(By.ID, "EmailId").send_keys("kylikov_nikita@mail.ru")
 # 30 | select | id=ddlCurrentOccupation | label=OTHERS | 
-select = Select(driver.find_element_by_name('ddlCurrentOccupation'))
-select.select_by_visible_text("OTHERS")
+dropdown = driver.find_element(By.ID, "ddlCurrentOccupation")
+dropdown.find_element(By.XPATH, "//option[. = 'OTHERS']").click()
 # 31 | type | id=OtherOccupation | MAIL | 
 driver.find_element(By.ID, "OtherOccupation").send_keys("MAIL")
 # 32 | type | id=txtEmployer | ExpressPost | 
@@ -106,24 +75,27 @@ driver.find_element(By.ID, "OccupationAddress").send_keys("LIGOVSKIY 50")
 # 34 | type | id=OccupationCity | stpeterburg | 
 driver.find_element(By.ID, "OccupationCity").send_keys("stpeterburg")
 # 35 | select | id=OccupationCountryId | label=RUSSIAN FEDERATION | 
-select = Select(driver.find_element_by_name('OccupationCountryId'))
-select.select_by_visible_text("RUSSIAN FEDERATION")
+driver.find_element(By.CSS_SELECTOR, "#OccupationCountryId > option:nth-child(184)").click()
+# dropdown = driver.find_element(By.ID, "OccupationCountryId")
+# dropdown.find_element(By.XPATH, "//option[. = 'RUSSIAN FEDERATION']").click()
 # 36 | type | id=OccupationContactNumber | 88126330225 | 
 driver.find_element(By.ID, "OccupationContactNumber").send_keys("88126330225")
 # 37 | click | id=next |  | 
 driver.find_element(By.ID, "next").click()
 # 38 | select | id=ddlMainTravelPurpose | label=TOURISM | 
-select = Select(driver.find_element_by_name('ddlMainTravelPurpose'))
-select.select_by_visible_text("TOURISM")
+dropdown = driver.find_element(By.ID, "ddlMainTravelPurpose")
+dropdown.find_element(By.XPATH, "//option[. = 'TOURISM']").click()
+driver.find_element(By.CSS_SELECTOR, "#ddlMainDestinationId > option:nth-child(9)").click()
 # 39 | select | id=ddlMainDestinationId | label=FINLAND | 
-select = Select(driver.find_element_by_name('ddlMainDestinationId'))
-select.select_by_visible_text("FINLAND")
+# dropdown = driver.find_element(By.ID, "ddlMainDestinationId")
+# dropdown.find_element(By.XPATH, "//option[. = 'FINLAND']").click()
 # 40 | select | id=StateOfFirstEntry | label=FINLAND | 
-select = Select(driver.find_element_by_name('StateOfFirstEntry'))
-select.select_by_visible_text("FINLAND")
+driver.find_element(By.CSS_SELECTOR, "#StateOfFirstEntry > option:nth-child(7)").click()
+# dropdown = driver.find_element(By.ID, "StateOfFirstEntry")
+# dropdown.find_element(By.XPATH, "//option[. = 'FINLAND']").click()
 # 41 | select | id=NumberOfEntries | label=MULTI | 
-select = Select(driver.find_element_by_name('NumberOfEntries'))
-select.select_by_visible_text("MULTI")
+dropdown = driver.find_element(By.ID, "NumberOfEntries")
+dropdown.find_element(By.XPATH, "//option[. = 'MULTI']").click()
 # 42 | type | id=DurationOfIntendedStay | 30 | 
 driver.find_element(By.ID, "DurationOfIntendedStay").send_keys("30")
 # 43 | click | id=SchengenVisasIssuesDuringYes |  | 
@@ -141,8 +113,8 @@ driver.find_element(By.ID, "IntentedDateOfDeparture").send_keys("15062020")
 # 49 | click | id=next |  | 
 driver.find_element(By.ID, "next").click()
 # 50 | select | id=ddlinvitingid | label=NO INVITATION | 
-select = Select(driver.find_element_by_name('ddlinvitingid'))
-select.select_by_visible_text("NO INVITATION")
+dropdown = driver.find_element(By.ID, "ddlinvitingid")
+dropdown.find_element(By.XPATH, "//option[. = 'NO INVITATION']").click()
 # 51 | click | id=1 |  | 
 driver.find_element(By.ID, "1").click()
 # 52 | click | id=CASH |  | 
@@ -158,12 +130,13 @@ driver.find_element(By.NAME, "SAVE").click()
 # actions = ActionChains(driver)
 # actions.move_to_element(element).perform()
 # 57 | click | id=rdbYes |  | 
-# driver.find_element(By.ID, "rdbYes").click()
-# # 58 | mouseOut | id=rdbYes |  | 
-# # element = driver.find_element(By.CSS_SELECTOR, "body")
-# # actions = ActionChains(driver)
-# # actions.move_to_element(element, 0, 0).perform()
-# # 59 | click | id=rdbTourist |  | 
-# driver.find_element(By.ID, "rdbTourist").click()
-# # 60 | click | id=btnSubmit |  | 
-# driver.find_element(By.ID, "btnSubmit").click()
+driver.find_element(By.ID, "rdbYes").click()
+# 58 | mouseOut | id=rdbYes |  | 
+# element = driver.find_element(By.CSS_SELECTOR, "body")
+# actions = ActionChains(driver)
+# actions.move_to_element(element, 0, 0).perform()
+# 59 | click | id=rdbTourist |  | 
+driver.find_element(By.ID, "rdbTourist").click()
+# 60 | click | id=btnSubmit |  | 
+driver.find_element(By.ID, "btnSubmit").click()
+

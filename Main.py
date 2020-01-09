@@ -3,7 +3,7 @@ import time
 import datetime
 
 import mEmail
-import mListdir
+# import mListdir
 
 today = datetime.datetime.today().strftime("%Y-%m-%d")
 pathToday = os.getcwd() + '\\temp\\%s\\' % today
@@ -18,10 +18,10 @@ if not os.path.exists(pathToday):
 # before_P = dict ([(f, None) for f in os.listdir (path_to_watch_P)])
 
 while True:
-    time.sleep (5)
-
+    time.sleep (3)
+    
     mEmail.unseen(path_to_watch_P)
-
+    print('sleeping')
     # mListdir.l()
 
     # after_P = dict ([(f, None) for f in os.listdir (path_to_watch_P)])
