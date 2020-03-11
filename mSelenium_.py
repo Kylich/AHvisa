@@ -25,7 +25,7 @@ driver.find_element(By.ID, "Login").click()
 time.sleep(2)
 
 dropdown = driver.find_element(By.ID, "VACLocation")
-dropdown.find_element(By.XPATH, "//option[. = 'CONSULATE GENERAL OF FINLAND, ST. PETERSBURG']").click()
+dropdown.find_element(By.XPATH, "//option[. = 'VISA CENTRE OF FINLAND, ST. PETERSBURG']").click()
 driver.find_element(By.ID, "LastName").send_keys("KULIKOV")
 driver.find_element(By.ID, "LastNameAtBirth").send_keys("KULIKOV")
 driver.find_element(By.CSS_SELECTOR, "#CurrentNationality > option:nth-child(229)").click()
